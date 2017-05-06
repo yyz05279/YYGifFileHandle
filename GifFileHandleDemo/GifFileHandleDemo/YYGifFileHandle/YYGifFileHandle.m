@@ -7,13 +7,17 @@
 //
 
 #import "YYGifFileHandle.h"
-#import <UIKit/UIKit.h>
 #import <ImageIO/ImageIO.h>
 #import <QuartzCore/QuartzCore.h>
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "YYGifView.h"
 
 #define win_height [UIScreen mainScreen].bounds.size.height
 #define win_width [UIScreen mainScreen].bounds.size.width
+
+@interface YYGifFileHandle ()
+
+@end
 
 @implementation YYGifFileHandle
 
@@ -28,11 +32,22 @@
     CGFloat height;
     
     getFrameInfo((__bridge CFURLRef)fileUrl, frames, delays, &totalTime, &width, &height, loopCount);
+    
+    NSMutableArray *imageArray = [NSMutableArray array];
+    for(int index = 0; index < [frames count]; index++)
+    {
+        //获取gif每一帧的image
+        UIImage *image = frames[index];
+        [imageArray addObject:[self imageCompressWithSimple:image]];
+    }
+    
     NSDictionary *gifDic = @{@"images": frames,          //图片数组
                              @"delays": delays,          //每一帧对应的延迟时间数组
                              @"duration": @(totalTime),  //GIF图播放一遍的总时间
                              @"loopCount": @(loopCount), //GIF图播放次数  0-无限播放
-                             @"bounds": NSStringFromCGRect(CGRectMake(0, 0, width, height)) //GIF图的宽高
+                             @"bounds": NSStringFromCGRect(CGRectMake(0, 0, width, height)),
+                             @"width": @(width),
+                             @"height": @(height)//GIF图的宽高
                              };
     return gifDic;
 }
@@ -120,7 +135,7 @@ void getFrameInfo(CFURLRef url, NSMutableArray *frames, NSMutableArray *delayTim
     return imageArray;
 }
 
-+ (NSArray *)geiGifImage:(NSString *)gifName text:(NSString *)text
++ (NSArray *)getGifImage:(NSString *)gifName text:(NSString *)text
 {
     NSDictionary *dic = [self getGifInfo:gifName];
     
@@ -146,6 +161,38 @@ void getFrameInfo(CFURLRef url, NSMutableArray *frames, NSMutableArray *delayTim
         UIGraphicsEndImageContext();  
     }
     return imageArray;
+}
+
++ (UIView *)gifView:(NSString *)gifName text:(NSString *)text
+{
+    if (text == nil || [text isEqualToString:@""]) {
+        NSArray *imageArr = [self getGifImage:gifName];
+        NSDictionary *dic = [self getGifInfo:gifName];
+        NSDictionary *changedDic = @{@"images": imageArr,
+                                     @"delays": dic[@"delays"],
+                                     @"duration": dic[@"duration"],
+                                     @"loopCount": dic[@"loopCount"],
+                                     @"bounds": NSStringFromCGRect(CGRectMake(0, 0, [dic[@"width"] doubleValue], [dic[@"height"] doubleValue])),
+                                     @"width": dic[@"width"],
+                                     @"height": dic[@"height"]
+                                     };
+        YYGifView *view = [[YYGifView alloc] initWithCenter:CGPointMake(win_width / 2, 0) gifInfo:changedDic];
+        return view;
+    } else {
+        NSArray *imageArr = [self getGifImage:gifName text:text];
+        NSDictionary *dic = [self getGifInfo:gifName];
+        NSDictionary *changedDic = @{@"images": imageArr,
+                                     @"delays": dic[@"delays"],
+                                     @"duration": dic[@"duration"],
+                                     @"loopCount": dic[@"loopCount"],
+                                     @"bounds": NSStringFromCGRect(CGRectMake(0, 0, [dic[@"width"] doubleValue], [dic[@"height"] doubleValue])),
+                                     @"width": dic[@"width"],
+                                     @"height": dic[@"height"]
+                                     };
+        YYGifView *view = [[YYGifView alloc] initWithCenter:CGPointMake(win_width / 2, 0) gifInfo:changedDic];
+        return view;
+    }
+    return nil;
 }
 
 @end

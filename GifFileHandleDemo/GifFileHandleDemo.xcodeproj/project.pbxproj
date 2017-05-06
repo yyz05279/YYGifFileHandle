@@ -18,6 +18,7 @@
 		5B95CB6E1EBD65F1004896EA /* GifFileHandleDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B95CB6D1EBD65F1004896EA /* GifFileHandleDemoUITests.m */; };
 		5B95CB7E1EBD6617004896EA /* YYGifFileHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B95CB7D1EBD6617004896EA /* YYGifFileHandle.m */; };
 		5B95CB861EBD6F91004896EA /* load_image.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5B95CB851EBD6F91004896EA /* load_image.gif */; };
+		5B95CB891EBD813D004896EA /* YYGifView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B95CB881EBD813D004896EA /* YYGifView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		5B95CB7C1EBD6617004896EA /* YYGifFileHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYGifFileHandle.h; sourceTree = "<group>"; };
 		5B95CB7D1EBD6617004896EA /* YYGifFileHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYGifFileHandle.m; sourceTree = "<group>"; };
 		5B95CB851EBD6F91004896EA /* load_image.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = load_image.gif; sourceTree = "<group>"; };
+		5B95CB871EBD813D004896EA /* YYGifView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYGifView.h; sourceTree = "<group>"; };
+		5B95CB881EBD813D004896EA /* YYGifView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYGifView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +158,8 @@
 			children = (
 				5B95CB7C1EBD6617004896EA /* YYGifFileHandle.h */,
 				5B95CB7D1EBD6617004896EA /* YYGifFileHandle.m */,
+				5B95CB871EBD813D004896EA /* YYGifView.h */,
+				5B95CB881EBD813D004896EA /* YYGifView.m */,
 			);
 			path = YYGifFileHandle;
 			sourceTree = "<group>";
@@ -297,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B95CB4D1EBD65F1004896EA /* ViewController.m in Sources */,
+				5B95CB891EBD813D004896EA /* YYGifView.m in Sources */,
 				5B95CB7E1EBD6617004896EA /* YYGifFileHandle.m in Sources */,
 				5B95CB531EBD65F1004896EA /* GifFileHandleDemo.xcdatamodeld in Sources */,
 				5B95CB4A1EBD65F1004896EA /* AppDelegate.m in Sources */,
@@ -538,6 +544,7 @@
 				5B95CB741EBD65F1004896EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5B95CB751EBD65F1004896EA /* Build configuration list for PBXNativeTarget "GifFileHandleDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -546,6 +553,7 @@
 				5B95CB771EBD65F1004896EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5B95CB781EBD65F1004896EA /* Build configuration list for PBXNativeTarget "GifFileHandleDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -554,6 +562,7 @@
 				5B95CB7A1EBD65F1004896EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

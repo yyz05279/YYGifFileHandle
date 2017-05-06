@@ -7,12 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface YYGifFileHandle : NSObject
 /**获取gif文件信息*/
 + (NSDictionary *)getGifInfo:(NSString *)gifName;
 + (NSArray *)getGifImage:(NSString *)gifName;
 /**添加gif水印*/
-+ (NSArray *)geiGifImage:(NSString *)gifName text:(NSString *)text;
++ (NSArray *)getGifImage:(NSString *)gifName text:(NSString *)text;
+/**直接获取GIF视图*/
++ (UIView *)gifView:(NSString *)gifName text:(NSString *)text;
 
 @end
